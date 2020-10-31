@@ -10,7 +10,7 @@ print("Printing out numbers from",start,"to",end, " not divisible by",divisor)
 #make if-statement to check if remainder obtained when the number divided by 7 is one or not.
 #If the remainder isn’t equal to 0, the number isn’t divisible by 7.
 #only numbers satisfying the condition are printed
-
+module load miniconda3
 for i in range(0,99): 
    if(i%7!=0): 
        print(i)
