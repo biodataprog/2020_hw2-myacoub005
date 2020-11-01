@@ -42,14 +42,40 @@ with gzip.open(gff,"rt") as fh:
         print(row[2],row[3],row[4])
        
 #Cool. Now let's get gene number and gene length.
+gff="Escherichia_coli_str_k_12_substr_mg1655.ASM584v2.37.gff3.gz"
+
+def isheader(line):
+    return line[0] == '>'
+
+def aspairs(f):
+    seq_id = ''
+    sequence = ''
+    for header,group in itertools.groupby(f, isheader):
+        if header:
+            line = next(group)
+            seq_id = line[1:].split()[0]
+        else:
+            sequence = ''.join(line.strip() for line in group)
+            yield seq_id, sequence
+
+
+
+if not os.path.exists(gff):
+    os.system("curl -O ftp://ftp.ensemblgenomes.org/pub/bacteria/release-45/gff3/bacteria_0_collection/escherichia_coli_str_k_12_substr_mg1655/Escherichia_coli_str_k_12_substr_mg1655.ASM584v2.37.gff3.gz")
+
+if not os.path.exists(fasta):
+    os.system("curl -O ftp://ftp.ensemblgenomes.org/pub/bacteria/release-45/fasta/bacteria_0_collection/escherichia_coli_str_k_12_substr_mg1655/dna/Escherichia_coli_str_k_12_substr_mg1655.ASM584v2.dna.chromosome.Chromosome.fa.gz")
+
 #Now I need to find how many genes and gene lenghts
-#because I'll be pulling from the same if statement (if row[2] == "gene") I can run these together. 
+#because I'll be pulling from the same if statement (if row[2] == "gene") I can run these together.
 genecount=0
 gene_lengths= []
 gff = "Escherichia_coli_str_k_12_substr_mg1655.ASM584v2.37.gff3.gz"
 with gzip.open(gff, "rt") as fh:
     gff = csv.reader(fh, delimiter="\t")
     for row in gff:
+        if row[0].startswith("#")
+            continue
         if row[2]=="gene":
             genecount += 1
             lengths += int(row[4])-int(row[3])
