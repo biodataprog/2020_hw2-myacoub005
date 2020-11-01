@@ -31,11 +31,12 @@ if not os.path.exists(gff):
 
 if not os.path.exists(fasta):
     os.system("curl -O ftp://ftp.ensemblgenomes.org/pub/bacteria/release-45/fasta/bacteria_0_collection/escherichia_coli_str_k_12_substr_mg1655/dna/Escherichia_coli_str_k_12_substr_mg1655.ASM584v2.dna.chromosome.Chromosome.fa.gz")
-    
+ 
+#I need to see the file first to know how to work w/ it. I want to know what the gene, start, end columns look like. After looking they are 2,3,4 respectively. 
 with gzip.open(gff,"rt") as fh:
     # now add code to process this
     gff = csv.reader(fh,delimiter="\t")
     for row in gff:
         if row[0].startswith("#"):
             continue
-        print(row[3],row[6])
+        print(row[2],row[3],row[4])
