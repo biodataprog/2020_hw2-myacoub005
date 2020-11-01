@@ -40,3 +40,20 @@ with gzip.open(gff,"rt") as fh:
         if row[0].startswith("#"):
             continue
         print(row[2],row[3],row[4])
+       
+#Cool. Now let's get gene number and gene length.
+#Now I need to find how many genes and gene lenghts
+#because I'll be pulling from the same if statement (if row[2] == "gene") I can run these together. 
+genecount=0
+gene_lengths=0
+gff = "Escherichia_coli_str_k_12_substr_mg1655.ASM584v2.37.gff3.gz"
+with gzip.open(gff2, "rt") as fh:
+    gff = csv.reader(fh, delimiter="\t")
+    for row in gff:
+        if row[2]=="gene":
+            genecount += 1
+            lengths += int(row[4])-int(row[3])
+            gene_lengths.append(lengths)
+coding_length = sum(gene_lenghts) #this will add all the gene lengths together, giving us total coding length
+print("there are",genecount,"in the E. coli genome")
+print("the total coding length of the genome is",coding_length) 
