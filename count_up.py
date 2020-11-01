@@ -78,7 +78,7 @@ with gzip.open(gff, "rt") as fh:
             continue
         if row[2]=="gene":
             genecount += 1
-            lengths += int(row[4])-int(row[3])
+            lengths = int(row[4])-int(row[3])
             gene_lengths.append(lengths)
 coding_length = sum(gene_lenghts) #this will add all the gene lengths together, giving us total coding length
 print("there are",genecount,"in the E. coli genome")
