@@ -47,7 +47,7 @@ with gzip.open(gff,"rt") as fh:
 genecount=0
 gene_lengths=0
 gff = "Escherichia_coli_str_k_12_substr_mg1655.ASM584v2.37.gff3.gz"
-with gzip.open(gff2, "rt") as fh:
+with gzip.open(gff, "rt") as fh:
     gff = csv.reader(fh, delimiter="\t")
     for row in gff:
         if row[2]=="gene":
