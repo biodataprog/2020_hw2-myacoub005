@@ -95,5 +95,5 @@ with gzip.open(fasta,"rt") as f:
     seqs = dict(aspairs(f))
 total_genome_length = len(seqs['Chromosome'])
                       
-percent_coding = .format(100* (coding_length/total_genome_length)
+percent_coding = float(100* (coding_length/total_genome_length)
                          
