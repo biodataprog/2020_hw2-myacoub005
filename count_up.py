@@ -74,12 +74,12 @@ gff = "Escherichia_coli_str_k_12_substr_mg1655.ASM584v2.37.gff3.gz"
 with gzip.open(gff, "rt") as fh:
     gff = csv.reader(fh, delimiter="\t")
     for row in gff:
-        if row[0].startswith("#"):
-            continue
-        if row[2]=="gene":
-            genecount += 1
-            lengths = int(row[4])-int(row[3])
-            gene_lengths.append(lengths)
+    if row[0].startswith("#"):
+        continue
+    if row[2]=="gene":
+        genecount += 1
+        lengths = int(row[4])-int(row[3])
+        gene_lengths.append(lengths)
 coding_length = sum(gene_lengths) #this will add all the gene lengths together, giving us total coding length
 print("there are",genecount,"in the E. coli genome")
 print("the total coding length of the genome is",coding_length) 
