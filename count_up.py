@@ -76,7 +76,7 @@ with gzip.open(gff, "rt") as fh:
     for row in gff:
         if row[0].startswith("#"):
             continue
-    if row[2]=="gene":
+        if row[2]=="gene":
         genecount += 1
         lengths = int(row[4])-int(row[3])
         gene_lengths.append(lengths)
