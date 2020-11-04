@@ -96,5 +96,5 @@ with gzip.open(fasta,"rt") as f:
 total_genome_length = len(seqs['Chromosome'])
                       
 percent_coding = (100* (coding_length/total_genome_length)) 
-print("the % of coding bp in the genome is" percent_coding)
+print(percent_coding)
                          
