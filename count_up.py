@@ -93,7 +93,7 @@ if not os.path.exists(fasta):
 
 with gzip.open(fasta,"rt") as f:
     seqs = dict(aspairs(f))
-total_genome_len = len(seqs['Chromosome']
+total_genome_len = len(seqs['Chromosome'])
                       
 percent_coding = .format(100* (coding_length/total_genome_len)
                          
