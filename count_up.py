@@ -82,4 +82,18 @@ with gzip.open(gff, "rt") as fh:
         gene_lengths.append(lengths)
 coding_length = sum(gene_lengths) #this will add all the gene lengths together, giving us total coding length
 print("there are",genecount,"in the E. coli genome")
-print("the total coding length of the genome is",coding_length) 
+print("the total coding length of the genome is",coding_length)
+
+#Use the FASTA file to compute the total length of genome (by adding up the length of each sequence in the file)
+
+fasta="Escherichia_coli_str_k_12_substr_mg1655.ASM584v2.dna.chromosome.Chromosome.fa.gz"
+
+if not os.path.exists(fasta):
+    os.system("curl -O ftp://ftp.ensemblgenomes.org/pub/bacteria/release-45/fasta/bacteria_0_collection/escherichia_coli_str_k_12_substr_mg1655/dna/Escherichia_coli_str_k_12_substr_mg1655.ASM584v2.dna.chromosome.Chromosome.fa.gz")
+
+with gzip.open(fasta,"rt") as f:
+    seqs = dict(aspairs(f))
+total_genome_len = len(seqs['Chromosome']
+                      
+percent_coding = .format(100* (lengths/total_genome_len)
+                         
