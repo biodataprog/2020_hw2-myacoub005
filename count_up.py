@@ -69,7 +69,7 @@ if not os.path.exists(fasta):
 #Now I need to find how many genes and gene lenghts
 #because I'll be pulling from the same if statement (if row[2] == "gene") I can run these together.
 genecount=0
-gene_lengths= []
+gene_lengths=0
 gff = "Escherichia_coli_str_k_12_substr_mg1655.ASM584v2.37.gff3.gz"
 with gzip.open(gff, "rt") as fh:
     gff = csv.reader(fh, delimiter="\t")
