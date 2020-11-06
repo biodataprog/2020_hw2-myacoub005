@@ -31,8 +31,57 @@ if not os.path.exists(file2):
 
 with gzip.open(file1,"rt") as fh:
     seqs = aspairs(fh)
+    
+Gene_num1 = 0
+len_1 = 0
+dict_1 = {'A':0, 'C':0, 'T':0, 'G':0}
 
+numGene_2 = 0
+len_2 = 0
+dict_2 = {'A':0, 'C':0, 'T':0, 'G':0}
+
+# create dictionary for codons. 
+for first in {'A','T','C','G'}:
+    for second in {'A','T','C','G'}:
+        for third in {'A','T','C','G'}:
+            new_codon = first+second+third
+            codon[new_codon] = 0
+codon_1 = codon.copy()
+codon_2 = codon.copy()
+
+with gzip.open(file1,"rt") as fh:
+    seqs = aspairs(fh)
     for seq in seqs:
         seqname  = seq[0]
         seqstring= seq[1]
-        print(seqname, " first 10 bases are ", seqstring[0:10])
+        Gene_num1 += 1
+        len_1 += len(seqstring)
+        for bp in seq[1]:
+            dict_1[bp] += 1
+        for n in range(0, len(seq[1]), 3):
+            codon_s[seq[1][n:n+3]] += 1
+           
+GC_1 = (dict_1['G'] + dict_1['C'])/sum(dict_1.values())
+
+with gzip.open(file2,"rt") as fh:
+    seqs = aspairs(fh)
+    for seq in seqs:
+        seqname  = seq[0]
+        seqstring= seq[1]
+        Gene_num2 += 1
+        len_2 += len(seqstring)
+        for bp in seq[1]:
+            dict_2[bp] += 1
+        for n in range(0, len(seq[1]), 3):
+            codon_2[seq[1][n:n+3]] += 1
+
+GC_2 = (dict_2['G'] + dict_2['C'])/sum(dict_2.values())
+
+print("the total number of genes in Salmonella enterica is", Gene_num1)
+print("the total num of genes in M. tuberculosis is", Gene_num2)
+print("the total length of genes in Salmonella enterica is", len_1)
+print("the the total length of genes in M. tuberculosis is", len_2)
+print("GC content in Salmonella is",GC_1*100)
+print("GC content in Mycobacterium is", GC_2*100)
+print("Total number of codon in Salmonella",len_1/3")
+print("total number of codon in Mycobacterium is",len_2/3)
