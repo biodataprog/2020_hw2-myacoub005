@@ -59,7 +59,7 @@ with gzip.open(file1,"rt") as fh:
         for bp in seq[1]:
             dict_1[bp] += 1
         for n in range(0, len(seq[1]), 3):
-            codon_s[seq[1][n:n+3]] += 1
+            codon_1[seq[1][n:n+3]] += 1
            
 GC_1 = (dict_1['G'] + dict_1['C'])/sum(dict_1.values())
 
@@ -85,3 +85,5 @@ print("GC content in Salmonella is",GC_1*100)
 print("GC content in Mycobacterium is", GC_2*100)
 print("Total number of codon in Salmonella",len_1/3")
 print("total number of codon in Mycobacterium is",len_2/3)
+      
+#I sorta struggled with this problem and I don't think I got it 100% right
